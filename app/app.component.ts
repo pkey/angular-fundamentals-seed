@@ -1,31 +1,60 @@
 import { Component } from "@angular/core";
+
+//Defining custom interfaces, types
+interface Passenger {
+  id: number;
+  fullName: string;
+  checkedIn: boolean;
+}
 @Component({
   selector: "app-root",
   styleUrls: ["app.component.scss"],
-  template: `
+    template: `
         <div class="app">
-            <input
-             type="text"
-             [value]="name"
-             (input)="handleChange($event.target.value)"
-            >
-
-             <!---> Same if as below but done on an element. Closely related to web components. <--->
-            <template [ngIf]="name.length">
-            <div>
-            Searching for... {{ name }}
-            </div> 
+        <!---> Angular translates to this thing. The below one is sugar syntax again <---->
+        <h3>Airline Passengers</h3>
+        <ul>
+            <template ngFor let-passenger let-i="index" [ngForOf]="passengers">
+            <li>
+               {{ i }}: {{passenger.fullName}}
+            </li>
             </template>
-            <!---> This is angular directive. More - structural directive <--->
-            <!---> This is sugar syntax <--->
-            <div *ngIf="name.length">
-            Searching for... {{ name }}</div>
+        </ul>
+            <h3>Airline Passengers</h3>
+        <ul>
+            <li *ngFor="let passenger of passengers; let i = index;">
+               {{ i }}: {{passenger.fullName}}
+            </li>
+        </ul>
         </div>
     `
 })
 export class AppComponent {
-  name: string = "";
-  handleChange(value: string) {
-    this.name = value;
-  }
+  passengers: Passenger[] = [
+    {
+      id: 1,
+      fullName: "Stephen",
+      checkedIn: true
+    },
+    {
+      id: 2,
+      fullName: "Rose",
+      checkedIn: true
+    },
+    {
+      id: 3,
+      fullName: "James",
+      checkedIn: true
+    },
+    {
+      id: 4,
+      fullName: "Louise",
+      checkedIn: true
+    },
+    {
+      id: 5,
+      fullName: "Tina",
+      checkedIn: false
+    }
+  ];
 }
