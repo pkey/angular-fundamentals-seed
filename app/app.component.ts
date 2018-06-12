@@ -23,6 +23,7 @@ interface Passenger {
             </li>
         </ul>
          <!--> Second: <--->
+         <h3>Airline Passengers</h3>
         <ul>
         <li *ngFor="let passenger of passengers; let i = index;">
         <span 
@@ -35,6 +36,30 @@ interface Passenger {
            {{ i }}: {{passenger.fullName}}
         </li>
     </ul>
+    <!--> Styles now. First: <--->
+    <h3>Airline Passengers</h3>
+    <ul>
+    <li *ngFor="let passenger of passengers; let i = index;">
+    <span 
+    class="status"
+    [style.backgroundColor]="(passenger.checkedIn ? '#2ecc71' : '#c0392b')"
+></span>
+       {{ i }}: {{passenger.fullName}}
+    </li>
+</ul>
+ <!--> Styles now. Second: <--->
+<h3>Airline Passengers</h3>
+    <ul>
+    <li *ngFor="let passenger of passengers; let i = index;">
+    <span 
+    class="status"
+    [ngStyle]="{
+      backgroundColor: (passenger.checkedIn ? '#2ecc71' : '#c0392b')
+    }"
+></span>
+       {{ i }}: {{passenger.fullName}}
+    </li>
+</ul>
         </div>
     `
 })
