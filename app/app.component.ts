@@ -6,8 +6,7 @@ import { Component } from "@angular/core";
         <div class="app">
             <input
              type="text"
-             [value]="name"
-             (input)="handleChange($event.target.value)"
+             [(ngModel)]="name"
             >
 
              <!---> Same if as below but done on an element. Closely related to web components. <--->
@@ -26,6 +25,6 @@ import { Component } from "@angular/core";
 export class AppComponent {
   name: string = "";
   handleChange(value: string) {
-    this.name = value;
+    console.log(this.name)
   }
 }
